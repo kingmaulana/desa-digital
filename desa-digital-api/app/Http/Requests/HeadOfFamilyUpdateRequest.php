@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class HeadOfFamilyStoreRequest extends FormRequest
+class HeadOfFamilyUpdateRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -16,8 +16,8 @@ class HeadOfFamilyStoreRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8',
-            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'password' => 'nullable|string|min:8',
+            'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'identity_number' => 'required|integer',
             'gender' => 'required|string|in:male,female',
             'date_of_birth' => 'required|date',
