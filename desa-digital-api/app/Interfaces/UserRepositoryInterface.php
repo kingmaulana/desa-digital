@@ -14,4 +14,12 @@ interface UserRepositoryInterface
         ?string $search,
         ?int $rowPerPage
     );
+
+    public function getById(
+        string $id
+    );
+
+    // create data blueprint
+    public function create(array $data);
+
 }
