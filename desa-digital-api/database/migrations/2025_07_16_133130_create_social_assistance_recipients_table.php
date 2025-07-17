@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('social_assistance_recipients', function (Blueprint $table) {
             $table->uuid('id')->primary();
+
             $table->uuid('social_assistance_id');
             $table->foreign('social_assistance_id')
                   ->references('id')
@@ -21,7 +22,7 @@ return new class extends Migration
             $table->uuid('head_of_family_id');
             $table->foreign('head_of_family_id')->references('id')->on('head_of_families');
 
-            $table->enum('bank', ['bri', 'bni', 'mandiri', 'bca']);
+            $table->enum('banks', ['bri', 'bni', 'mandiri', 'bca']);
             $table->decimal('amount', 10, 2);
             $table->longText('reason');
             $table->string('bank');

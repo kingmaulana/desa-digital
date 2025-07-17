@@ -7,6 +7,7 @@ use App\Http\Resources\PaginateResource;
 use App\Http\Resources\UserResource;
 use App\Interfaces\UserRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -35,14 +36,22 @@ class UserController extends Controller
 
     public function getAllPaginated(Request $request)
     {
-        $request = $request->validate([
-            'search' => 'nullable|string',
-            'rowPerPage' => 'nullable|integer'
-        ]);
+        $validator = Validator::make($request->all(), [
+        'search' => 'nullable|string',
+        'row_per_page' => 'required|integer',
+    ]);
+
+        if ($validator->fails()) {
+            return ResponseHelper::jsonResponse(false, 'Validasi gagal', $validator->errors(), 500);
+        }
+
+        $validated = $validator->validated();
+
+
         try {
             $users = $this->userRepository->getAllPaginated(
                 $request['search'] ?? null,
-                $request['rowPerPage'] ?? null
+                $request['row_per_page']
             );
 
             return ResponseHelper::jsonResponse(true, 'Data User Berhasil Diambil', PaginateResource::make($users, UserResource::class), 200);
