@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\HeadOfFamily;
 use Illuminate\Foundation\Http\FormRequest;
 
 class HeadOfFamilyUpdateRequest extends FormRequest
@@ -13,9 +14,11 @@ class HeadOfFamilyUpdateRequest extends FormRequest
      */
     public function rules(): array
     {
+        // $user = User::where('id', $request)
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            // 'email' => 'nullable|string|email|max:255|unique:users,email' . HeadOfFamily::find($this->route('head_of_family'))->user_id,
+            'email' => 'nullable|string|email|max:255|unique:users',
             'password' => 'nullable|string|min:8',
             'profile_picture' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'identity_number' => 'required|integer',

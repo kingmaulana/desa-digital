@@ -113,4 +113,25 @@ class HeadOfFamilyRepository implements HeadOfFamilyRepositoryInterface
             throw new Exception($e->getMessage());
         }
     }
+
+    public function delete(string $id)
+    {
+        DB::beginTransaction();
+
+        try {
+            $headOfFamily = HeadOfFamily::find($id);
+            
+            if (!$headOfFamily) {
+                throw new Exception('Kepala Keluarga tidak ditemukan');
+            }
+
+            $headOfFamily->delete();
+
+            DB::commit();
+            return $headOfFamily;
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw new Exception($e->getMessage());
+        }
+    }
 }
