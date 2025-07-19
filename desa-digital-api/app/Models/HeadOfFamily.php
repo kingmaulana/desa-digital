@@ -37,7 +37,7 @@ class HeadOfFamily extends Model
         return $this->BelongsTo(User::class);
     }
 
-    public function familyMember()
+    public function familyMembers()
     {
         return $this->hasMany(FamilyMember::class);
     }

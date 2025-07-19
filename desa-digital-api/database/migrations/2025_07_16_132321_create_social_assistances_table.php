@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('thumbnail');
             $table->string('name');
-            $table->enum('category', ['staple', 'cash', 'subsidized fuel', 'health' ]);
+            $table->enum('category', ['staple', 'cash', 'subsidized fuel', 'health']);
             $table->decimal('amount', 10, 2);
             $table->string('provider');
             $table->longText('description');
