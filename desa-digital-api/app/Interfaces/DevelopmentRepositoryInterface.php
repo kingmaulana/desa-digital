@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 namespace App\Interfaces;
 
-interface SocialAssistanceRecipientRepositoryInterface
+interface DevelopmentRepositoryInterface
 {
-    public function getAll(
+      public function getAll(
         ?string $search,
         ?int $limit,
         bool $execute
@@ -14,13 +14,13 @@ interface SocialAssistanceRecipientRepositoryInterface
         ?string $search,
         ?int $rowPerPage
     );
-    
+
     public function getById(
         string $id
     );
-    
+
     public function create(
-        array $data
+      array $data
     );
 
     public function update(
