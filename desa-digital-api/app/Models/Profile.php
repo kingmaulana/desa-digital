@@ -20,7 +20,12 @@ class Profile extends Model
         'total_area',
     ];
 
-    public function profileImage() 
+    protected $casts = [
+      'agriculture_area' => 'decimal:2',
+      'total_area' => 'decimal:2',
+    ];
+
+    public function profileImage()
     {
         return $this->hasMany(ProfileImage::class);
     }
